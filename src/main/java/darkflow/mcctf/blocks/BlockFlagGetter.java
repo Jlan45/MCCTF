@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -22,10 +23,18 @@ public class BlockFlagGetter extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        NbtCompound tag = new NbtCompound();
-        tag.putString("flag","FLAG{TEST}");
-        ItemStack itemStack=new ItemStack(FLAG);
-        player.giveItemStack(itemStack);
-        return super.onUse(state, world, pos, player, hand, hit);
+        if(!world.isClient) {
+            NbtCompound tag = new NbtCompound();
+            tag.putString("flag", "FLAG{TEST}");
+            ItemStack itemStack = new ItemStack(FLAG);
+            itemStack.setNbt(tag);
+            player.giveItemStack(itemStack);
+        }
+//        else{
+//            player.sendMessage(Text.of("要在服务器上跑才可以哦"));
+//        }
+        return ActionResult.SUCCESS;
+
+
     }
 }

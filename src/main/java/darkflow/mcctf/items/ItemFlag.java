@@ -24,17 +24,19 @@ public class ItemFlag extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        if(context.getPlayer()!=null){
-        context.getPlayer().sendMessage(Text.of("Flag应该放到Flag箱里"));
+        if (!context.getWorld().isClient) {
+            if(context.getPlayer()!=null){
+                context.getPlayer().sendMessage(Text.of("Flag应该放到Flag箱里"));
+            }
         }
-        return super.useOnBlock(context);
+        return ActionResult.SUCCESS;
     }
 
 
-    @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        // 默认为白色文本
-        tooltip.add(Text.of("flag{thisisflag}"));
-    }
+//    @Override
+//    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+//        // 默认为白色文本
+//        tooltip.add(Text.of("flag{thisisflag}"));
+//    }
 
 }
