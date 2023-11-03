@@ -1,5 +1,6 @@
 package darkflow.mcctf.blocks;
 
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -7,6 +8,7 @@ import net.minecraft.block.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AirBlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -25,18 +27,16 @@ public class BlockFlagCollecter extends Block {
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        Iterable<ItemStack> itemStacks=player.getHandItems();
-        for (ItemStack itemStack : itemStacks) {
-            if(itemStack.getItem().getTranslationKey().equals("item.mcctf.flag")){
-                //TODO flag验证
-                if(verifyFlag(player,"testflag")){
-                    player.sendMessage(Text.of("Flag验证成功"),false);
-                    player.getInventory().setStack(player.getInventory().selectedSlot,null);
-                }
+        ItemStack itemStack=player.getHandItems().iterator().next();
+        if(itemStack.getItem().getTranslationKey().equals("item.mcctf.flag")){
+            //TODO flag验证
+            if(verifyFlag(player,"testflag")){
+                player.sendMessage(Text.of("Flag验证成功"),false);
+                ItemStack itemStack1=new ItemStack(Items.AIR);
+                player.setStackInHand(hand,itemStack1);
             }
         }
         player.sendMessage(Text.of("Hello, world!"), false);
-
         return ActionResult.SUCCESS;
     }
 }
