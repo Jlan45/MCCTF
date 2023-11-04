@@ -18,6 +18,11 @@ import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class MCCTF implements ModInitializer {
     /**
@@ -30,7 +35,6 @@ public class MCCTF implements ModInitializer {
     public static final BlockFlagCollecter FLAG_COLLECTER_BLOCK=new BlockFlagCollecter();
     public static final ItemFlagCollecter FLAG_COLLECTER_ITEM=new ItemFlagCollecter(FLAG_COLLECTER_BLOCK,new FabricItemSettings().maxCount(1));
     public static final ItemFlagGetter FLAG_GETTER_ITEM=new ItemFlagGetter(FLAG_GETTER_BLOCK,new FabricItemSettings().maxCount(1));
-
     @Override
     public void onInitialize() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> BroadCastCommand.register(dispatcher));
@@ -39,6 +43,8 @@ public class MCCTF implements ModInitializer {
         Registry.register(Registry.BLOCK,new Identifier("mcctf","flaggetter"), FLAG_GETTER_BLOCK);
         Registry.register(Registry.ITEM, new Identifier("mcctf","flagcollecter"), FLAG_COLLECTER_ITEM);
         Registry.register(Registry.ITEM, new Identifier("mcctf","flaggetter"), FLAG_GETTER_ITEM);
+        //读取salt文件，如果不存在就随机生成8位salt并写入文件中
+
 
         LOGGER.info("Mod initialized.");
     }
