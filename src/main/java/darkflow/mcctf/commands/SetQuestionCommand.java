@@ -11,10 +11,8 @@ import static com.mojang.brigadier.arguments.StringArgumentType.*;
 import static net.minecraft.command.argument.ColorArgumentType.getColor;
 import static net.minecraft.server.command.CommandManager.literal;
 import static net.minecraft.server.command.CommandManager.argument;
-// Import everything in the CommandManager
 import static net.minecraft.server.command.CommandManager.*;
 
-import static net.minecraft.server.command.CommandManager.*;
 
 
 public final class SetQuestionCommand {

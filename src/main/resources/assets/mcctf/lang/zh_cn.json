@@ -1,3 +1,4 @@
 {
-  "item.mcctf.flag": "Flag"
+  "item.mcctf.flag": "Flag",
+  "stat.mcctf.score": "得分"
 }

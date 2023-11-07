@@ -1,5 +1,6 @@
 package darkflow.mcctf.blocks;
 
+import darkflow.mcctf.MCCTF;
 import darkflow.mcctf.gui.TestGUI;
 import darkflow.mcctf.models.Question;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -11,6 +12,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AirBlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.stat.Stat;
+import net.minecraft.stat.StatType;
+import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -42,6 +46,7 @@ public class BlockFlagCollecter extends Block {
                 try {
                     if (verifyFlag(player,tmpQuestion, userFlag)) {
                         player.sendMessage(Text.of("Flag验证成功"), false);
+                        player.increaseStat(MCCTF.PLAYER_CONTEST_SCORE,tmpQuestion.getScore());
                         ItemStack itemStack1 = new ItemStack(Items.AIR);
                         player.setStackInHand(hand, itemStack1);
                     }
