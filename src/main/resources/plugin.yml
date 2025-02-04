@@ -1,0 +1,25 @@
+name: mcctf
+version: '1.0-SNAPSHOT'
+main: top.darkflow.mcctf.Mcctf
+api-version: '1.19'
+authors: [ J1an ]
+description: 在MineCraft中享受CTF～
+commands:
+  test:
+    description: 111
+    usage: /test
+  ctf:
+    description: 111
+    usage: /ctf
+  login:
+    description: 111
+    usage: /login
+  register:
+    description: 111
+    usage: /register
+  ctfteam:
+    description: 111
+    usage: /ctfteam
+  ctfmanage:
+    description: 111
+    usage: /ctfmanage
